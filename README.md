@@ -1,2 +1,2 @@
 # getting-started-java
-Java sample application for wercker
+Java getting started application for wercker
