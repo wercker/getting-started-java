@@ -1,5 +1,8 @@
 # docker box definition
-box: java
+box:
+  id: openjdk
+  ports:
+    - "8080"
 
 # defining the dev pipeline
 dev:
@@ -8,6 +11,14 @@ dev:
       name: gradle bootRun
       code: |
         ./gradlew bootRun
+
+    ### REPLACE the above script step with this internal/watch step to enable 
+    ### dynamic rebuilding/reloading of the container in response to file changes.
+    #
+    # - internal/watch:
+    #     code: |
+    #       ./gradlew bootRun
+    #     reload: true
 
 # Build definition
 build:

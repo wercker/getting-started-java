@@ -1,8 +1,7 @@
-package com.example;
+package demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +11,7 @@ public class Hello {
 
 	@RequestMapping("/")
 	public String home() {
-		return "Hello World";
+		return "Hello World!";
 	}
 
 
