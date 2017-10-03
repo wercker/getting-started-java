@@ -5,7 +5,7 @@ A sample application in Java for wercker.
 This application uses the `openjdk` container obtained from the [Docker Hub](https://registry.hub.docker.com/_/openjdk/)
 
 ## Setup & Build
-Clone or fork this repo and cd into the directory:
+Clone this repo and cd into the directory:
 
 ```
 git clone https://github.com/wercker/getting-started-java.git
