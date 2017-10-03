@@ -1,11 +1,20 @@
+<<<<<<< HEAD
 # getting-started-java
+=======
+getting-started-java
+======================
+>>>>>>> master
 
 A sample application in Java for wercker.
 
 This application uses the `openjdk` container obtained from the [Docker Hub](https://registry.hub.docker.com/_/openjdk/)
 
 ## Setup & Build
+<<<<<<< HEAD
 Clone or fork this repo and cd into the directory:
+=======
+Clone this repo and cd into the directory:
+>>>>>>> master
 
 ```
 git clone https://github.com/wercker/getting-started-java.git
