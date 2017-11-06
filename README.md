@@ -27,7 +27,7 @@ wercker dev --expose-ports
 
 Now point your browser at `http://localhost:8080` to see:
 ```
-Hello World!
+Hello World!!!
 ```
 
 ---
