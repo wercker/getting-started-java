@@ -29,3 +29,53 @@ build:
         name: gradle build
         code: |
           ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR build
+          echo "cp build/libs/*.jar $WERCKER_CACHE_DIR"
+          cp build/libs/*.jar $WERCKER_CACHE_DIR
+          echo "cp build/libs/*.jar $WERCKER_OUTPUT_DIR"
+          cp build/libs/*.jar $WERCKER_OUTPUT_DIR
+    - script:
+        name: environment details
+        code: |
+          echo "% env"
+          env
+          echo "% ls -alF $WERCKER_CACHE_DIR"
+          ls -alF $WERCKER_CACHE_DIR
+          echo "% ls -alF $WERCKER_OUTPUT_DIR"
+          ls -alF $WERCKER_OUTPUT_DIR
+
+    ### Run dependency-check using gradle plugin with modified build.gradle
+    # - script:
+    #     name: OWASP Dependency-Check
+    #     code: |
+    #       ./gradlew --project-cache-dir=$WERCKER_CACHE_DIR dependencyCheckAnalyze
+    #       echo "% cp build/reports/*.* $WERCKER_CACHE_DIR"
+    #       cp build/reports/*.* $WERCKER_CACHE_DIR
+
+# security scan definition
+security-scan:
+  # The steps that will run the security scan to check for libraries with reported CVEs
+  steps:
+    - script:
+        name: environment details
+        code: |
+          echo "% env"
+          env
+          echo "% ls -alF $WERCKER_CACHE_DIR"
+          ls -alF $WERCKER_CACHE_DIR
+          echo "% ls -alF $WERCKER_OUTPUT_DIR"
+          ls -alF $WERCKER_OUTPUT_DIR
+    ### Use CVSS of 11 so that the step completes even when a CVE is discovered
+    - thefrogpad/owasp-dependency-check:
+        project: demo
+        scan: $WERCKER_CACHE_DIR/demo-1.0.jar
+        format: ALL
+        fail_on_cvss: "11"
+    - script:
+        name: OWASP dependency-check details
+        code: |
+          echo "% ls -alF $WERCKER_CACHE_DIR"
+          ls -alF $WERCKER_CACHE_DIR
+          echo "% ls -alF $WERCKER_CACHE_DIR/owasp/"
+          ls -alF $WERCKER_CACHE_DIR/owasp
+          echo "% cat $WERCKER_CACHE_DIR/dependency-check-vulnerability.html"
+          cat $WERCKER_CACHE_DIR/dependency-check-vulnerability.html
