@@ -84,6 +84,6 @@ security-scan:
 parse-upload-occurrences:
   steps:
     - script:
-        name: Parse Dependency-Check Report
+        name: gradle build
         code: |
           ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR generateOccurrences
