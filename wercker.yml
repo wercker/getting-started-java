@@ -80,10 +80,12 @@ security-scan:
           echo "% cat $WERCKER_CACHE_DIR/dependency-check-vulnerability.html"
           cat $WERCKER_CACHE_DIR/dependency-check-vulnerability.html
 
-# parse the dependency-check report and upload
-parse-upload-occurrences:
+deploy-grafeas:
+  # The steps that deploy the grafeas service on gke cluster
   steps:
-    - script:
-        name: gradle build
-        code: |
-          ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR generateOccurrences
+    - kubectl:
+        server: http://35.184.0.39
+        username: admin
+        password: TJ5JuGZorg0cdpIy
+        insecure-skip-tls-verify: true
+        command: apply -f src/main/resouces/grafeas.yaml
