@@ -84,7 +84,7 @@ deploy-grafeas:
   # The steps that deploy the grafeas service on gke cluster
   steps:
     - kubectl:
-        server: http://35.184.0.39
+        server: https://35.184.0.39
         username: admin
         password: TJ5JuGZorg0cdpIy
         insecure-skip-tls-verify: true
