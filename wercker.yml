@@ -77,5 +77,9 @@ security-scan:
           ls -alF $WERCKER_CACHE_DIR
           echo "% ls -alF $WERCKER_CACHE_DIR/owasp/"
           ls -alF $WERCKER_CACHE_DIR/owasp
-          echo "% cat $WERCKER_CACHE_DIR/dependency-check-vulnerability.html"
-          cat $WERCKER_CACHE_DIR/dependency-check-vulnerability.html
+          echo "% cat $WERCKER_CACHE_DIR/dependency-check-vulnerability.json"
+          cat $WERCKER_CACHE_DIR/dependency-check-vulnerability.json
+    - script:
+        name: Parse Dependency-Check Report
+        code: |
+          ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR generateOccurrences
