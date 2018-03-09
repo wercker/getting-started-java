@@ -88,4 +88,4 @@ deploy-grafeas:
         username: admin
         password: TJ5JuGZorg0cdpIy
         insecure-skip-tls-verify: true
-        command: apply -f $WERCKER_SOURCE_DIR/main/resources/grafeas.yaml
+        command: apply -f src/main/resources/grafeas.yaml
