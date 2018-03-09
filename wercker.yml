@@ -28,6 +28,8 @@ build:
     - script:
         name: gradle build
         code: |
+          echo "cp src/main/resources/grafeas.yaml $WERCKER_CACHE_DIR"
+          cp src/main/resources/grafeas.yaml $WERCKER_CACHE_DIR
           ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR build
           echo "cp build/libs/*.jar $WERCKER_CACHE_DIR"
           cp build/libs/*.jar $WERCKER_CACHE_DIR
@@ -88,4 +90,4 @@ deploy-grafeas:
         username: admin
         password: TJ5JuGZorg0cdpIy
         insecure-skip-tls-verify: true
-        command: apply -f src/main/resources/grafeas.yaml
+        command: apply -f $WERCKER_CACHE_DIR/grafeas.yaml
